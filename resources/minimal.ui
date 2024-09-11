@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="TemplateMinimalWidget" parent="GtkWidget">
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+        <child>
+            <object class="GtkBox">
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+                <property name="vexpand">false</property>
+                <property name="hexpand">false</property>
+                <property name="overflow">hidden</property>
+                <property name="homogeneous">false</property>
+                <child>
+                    <object class="RollingChar" id="roll">
+                        <property name="current-char">0</property>
+                        <property name="valign">center</property>
+                        <property name="halign">start</property>
+                        <property name="height-request">40</property>
+                        <property name="width-request">20</property>
+                    </object>
+                </child>
+                <!-- Example of a button using template callbacks -->
+                <!-- <child>
+                    <object class="GtkButton" id="callback_bt">
+                        <signal name="clicked" handler="do_stuff" swapped="true" />
+                        <property name="label">Click me!</property>
+                        <property name="valign">center</property>
+                        <property name="halign">start</property>
+                        <property name="height-request">40</property>
+                        <property name="width-request">20</property>
+                    </object>
+                </child> -->
+            </object>
+        </child>
+    </template>
+</interface>
