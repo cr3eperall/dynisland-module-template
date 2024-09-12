@@ -25,8 +25,8 @@ use crate::{
     NAME,
 };
 
-pub struct MusicModule {
-    base_module: BaseModule<MusicModule>,
+pub struct TemplateModule {
+    base_module: BaseModule<TemplateModule>,
     producers_rt: ProducerRuntime,
     config: TemplateConfigMain,
 }
@@ -47,7 +47,7 @@ pub fn new(app_send: RSender<UIServerCommand>) -> RResult<ModuleType, RBoxError>
         .windows
         .insert("".to_string(), vec![TemplateConfig::default()]);
 
-    let this = MusicModule {
+    let this = TemplateModule {
         base_module,
         producers_rt,
         config,
@@ -55,7 +55,7 @@ pub fn new(app_send: RSender<UIServerCommand>) -> RResult<ModuleType, RBoxError>
     ROk(SabiModule_TO::from_value(this, TD_CanDowncast))
 }
 
-impl SabiModule for MusicModule {
+impl SabiModule for TemplateModule {
     // register the producers and the default css provider
     // this is called after the module is created but before gtk is initialized
     // so any code that uses gtk should be spawned on the main context
@@ -126,7 +126,7 @@ impl SabiModule for MusicModule {
 // This function should only setup the runtime to update dynamic properties
 // and should return as soon as possible
 #[allow(unused_variables)]
-fn producer(module: &MusicModule) {
+fn producer(module: &TemplateModule) {
     let config = &module.config;
 
     let activity_map = module.base_module.registered_activities();
