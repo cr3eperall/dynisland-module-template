@@ -45,23 +45,15 @@ impl ObjectSubclass for MinimalPriv {
         RollingChar::ensure_type();
         klass.set_layout_manager_type::<BinLayout>();
         klass.bind_template();
-        // If you use template callbacks (for example running a function when a button is pressed), uncomment this
-        // klass.bind_template_instance_callbacks();
+        // Warning: template callbacks only work if the module is embedded
+        // so don't call `klass.bind_template_instance_callbacks();` or dynisland will crash
+        // manually connect signals in `ObjectImpl::constructed` instead
     }
 
     fn instance_init(obj: &InitializingObject<Self>) {
         obj.init_template();
     }
 }
-
-// Example of implementing template callbacks
-// #[gtk::template_callbacks]
-// impl Minimal{
-//     #[template_callback]
-//     fn do_stuff(&self, _button: &gtk::Button) {
-//         log::info!("Button pressed");
-//     }
-// }
 
 impl ObjectImpl for MinimalPriv {
     fn constructed(&self) {
